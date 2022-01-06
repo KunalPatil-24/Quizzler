@@ -24,6 +24,18 @@ class QuizPage extends StatefulWidget {
   _QuizPageState createState() => _QuizPageState();
 }
 
+List<Icon> scoreKeeper = [];
+
+List<String> questions = [
+  'Delhi is the capital of India',
+  'Narendra Modi is the Prime minister of India',
+  'India has never won the world cup'
+];
+
+List<bool> answers = [true, true, false];
+
+int questionNum = 0;
+
 class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
@@ -37,7 +49,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                questions[questionNum],
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -50,9 +62,11 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              textColor: Colors.white,
-              color: Colors.green,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                  primary: Colors.blue,
+                  onSurface: Colors.red,
+                  backgroundColor: Colors.green),
               child: Text(
                 'True',
                 style: TextStyle(
@@ -61,7 +75,19 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //The user picked true.
+                bool correctAns = answers[questionNum];
+                if (correctAns == true) {
+                  print('The user has entered correct answer');
+                } else {
+                  print('the user has entered incorrect answer');
+                }
+                setState(() {
+                  scoreKeeper.add(Icon(
+                    Icons.check,
+                    color: Colors.green,
+                  ));
+                  questionNum++;
+                });
               },
             ),
           ),
@@ -69,8 +95,12 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              color: Colors.red,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                primary: Colors.blue,
+                onSurface: Colors.red,
+                backgroundColor: Colors.red,
+              ),
               child: Text(
                 'False',
                 style: TextStyle(
@@ -79,32 +109,27 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //The user picked false.
+                bool correctAns = answers[questionNum];
+
+                if (correctAns == false) {
+                  print('The user has entered correct answer');
+                } else {
+                  print('the user has entered incorrect answer');
+                }
+                setState(() {
+                  scoreKeeper.add(
+                    Icon(
+                      Icons.close,
+                      color: Colors.red,
+                    ),
+                  );
+                  questionNum++;
+                });
               },
             ),
           ),
         ),
-        //TODO: Add a Row here as your score keeper
-        Row(
-          children: [
-            Icon(
-              Icons.check,
-              color: Colors.green,
-            ),
-            Icon(
-              Icons.check,
-              color: Colors.green,
-            ),
-            Icon(
-              Icons.close,
-              color: Colors.red,
-            ),
-            Icon(
-              Icons.close,
-              color: Colors.red,
-            ),
-          ],
-        )
+        Row(children: scoreKeeper)
       ],
     );
   }

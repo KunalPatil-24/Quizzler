@@ -1,6 +1,6 @@
 
 # What is Quizzler?
-It's cross-flatform Quiz app made using Flutter and Dart
+It's cross-platform Quiz app made using Flutter and Dart
 
 
 <!-- ## What you will create

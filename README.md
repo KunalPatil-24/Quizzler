@@ -17,7 +17,5 @@ We’re going to make a quiz app that tests your general knowledge. As one of th
 - Extracting Widgets to refactor your code.
 - private and public modifiers in Dart.
 - How to use Dart lists.
-- The difference between var, const and final.
-
  
 ##Please do give suggestions to improve the projects, if any ;)

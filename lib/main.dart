@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'questions.dart';
 
 void main() => runApp(Quizzler());
 
@@ -32,6 +33,12 @@ List<String> questions = [
   'India has never won the world cup'
 ];
 
+List<Questions> questionBank = [
+  Questions(q: 'Delhi is the capital of India', a: true),
+  Questions(q: 'Narendra Modi is the Prime minister of India', a: true),
+  Questions(q: 'India has never won the world cup', a: false)
+];
+
 List<bool> answers = [true, true, false];
 
 int questionNum = 0;
@@ -49,7 +56,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNum],
+                questionBank[questionNum].question,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -75,7 +82,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAns = answers[questionNum];
+                bool correctAns = questionBank[questionNum].answer;
                 if (correctAns == true) {
                   print('The user has entered correct answer');
                 } else {
@@ -109,7 +116,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAns = answers[questionNum];
+                bool correctAns = questionBank[questionNum].answer;
 
                 if (correctAns == false) {
                   print('The user has entered correct answer');

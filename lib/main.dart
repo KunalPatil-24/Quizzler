@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'questions.dart';
+import 'quizBrain.dart';
 
 void main() => runApp(Quizzler());
 
@@ -20,24 +20,14 @@ class Quizzler extends StatelessWidget {
   }
 }
 
+QuizBrain quizBrain = QuizBrain();
+
 class QuizPage extends StatefulWidget {
   @override
   _QuizPageState createState() => _QuizPageState();
 }
 
 List<Icon> scoreKeeper = [];
-
-List<String> questions = [
-  'Delhi is the capital of India',
-  'Narendra Modi is the Prime minister of India',
-  'India has never won the world cup'
-];
-
-List<Questions> questionBank = [
-  Questions(q: 'Delhi is the capital of India', a: true),
-  Questions(q: 'Narendra Modi is the Prime minister of India', a: true),
-  Questions(q: 'India has never won the world cup', a: false)
-];
 
 List<bool> answers = [true, true, false];
 
@@ -56,7 +46,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questionBank[questionNum].question,
+                quizBrain.questionBank[questionNum].question,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -82,7 +72,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAns = questionBank[questionNum].answer;
+                bool correctAns = quizBrain.questionBank[questionNum].answer;
                 if (correctAns == true) {
                   print('The user has entered correct answer');
                 } else {
@@ -116,7 +106,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAns = questionBank[questionNum].answer;
+                bool correctAns = quizBrain.questionBank[questionNum].answer;
 
                 if (correctAns == false) {
                   print('The user has entered correct answer');

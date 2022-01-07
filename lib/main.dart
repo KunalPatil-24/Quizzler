@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'quizBrain.dart';
+import 'quiz_brain.dart';
 
 void main() => runApp(Quizzler());
 
@@ -31,8 +31,6 @@ List<Icon> scoreKeeper = [];
 
 List<bool> answers = [true, true, false];
 
-int questionNum = 0;
-
 class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
@@ -46,7 +44,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.questionBank[questionNum].question,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -72,7 +70,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAns = quizBrain.questionBank[questionNum].answer;
+                bool correctAns = quizBrain.getAnswer();
                 if (correctAns == true) {
                   print('The user has entered correct answer');
                 } else {
@@ -83,7 +81,7 @@ class _QuizPageState extends State<QuizPage> {
                     Icons.check,
                     color: Colors.green,
                   ));
-                  questionNum++;
+                  quizBrain.nextQuestion();
                 });
               },
             ),
@@ -106,7 +104,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAns = quizBrain.questionBank[questionNum].answer;
+                bool correctAns = quizBrain.getAnswer();
 
                 if (correctAns == false) {
                   print('The user has entered correct answer');
@@ -120,7 +118,7 @@ class _QuizPageState extends State<QuizPage> {
                       color: Colors.red,
                     ),
                   );
-                  questionNum++;
+                  quizBrain.nextQuestion();
                 });
               },
             ),

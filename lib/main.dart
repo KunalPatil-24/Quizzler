@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'quiz_brain.dart';
-
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() => runApp(Quizzler());
 
@@ -17,6 +17,7 @@ class Quizzler extends StatelessWidget {
           ),
         ),
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -91,6 +92,19 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 checkAnswer(true);
+                bool isProgramFinished = quizBrain.isFinished();
+                if (isProgramFinished) {
+                  setState(() {
+                    Alert(
+                            context: context,
+                            title: "Queue is Over",
+                            desc: 'You\'ve reached the end of the quiz.')
+                        .show();
+
+                    quizBrain.reset();
+                    scoreKeeper.clear();
+                  });
+                }
               },
             ),
           ),
@@ -113,6 +127,18 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 checkAnswer(false);
+                bool isProgramFinished = quizBrain.isFinished();
+                if (isProgramFinished) {
+                  setState(() {
+                    Alert(
+                            context: context,
+                            title: "Queue is Over",
+                            desc: 'You\'ve reached the end of the quiz.')
+                        .show();
+                    quizBrain.reset();
+                    scoreKeeper.clear();
+                  });
+                }
               },
             ),
           ),

@@ -18,4 +18,4 @@ We’re going to make a quiz app that tests your general knowledge. As one of th
 - private and public modifiers in Dart.
 - How to use Dart lists.
  
-##Please do give suggestions to improve the projects, if any ;)
+##Please do give suggestions to improve this project, if any ;)
